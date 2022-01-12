@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale = 1.0">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<head><link rel="stylesheet" href="log-in-page.css"></head>
+
+<script>
+//------------------------------------------------------------------------------------------------------------------------------------------//
+// Javascript/JQuery
+//------------------------------------------------------------------------------------------------------------------------------------------//
+$(document).ready(function(){
+
+    $(".bottomInfo").show();
+    $(".middleForms input").val("");
+
+    $("body").css("height", window.innerHeight);
+    $(".popupBackground").css("height", window.innerHeight);
+
+  	$(".clickLogIn").click(function(){
+    	$(".logInForm").show();
+        $(".signUpForm").hide();
+        $(".signUpForm input").val("");
+        $(".signUpForm input").removeAttr("style");
+        $("#input-email-error, #create-password-error").hide();
+        disableSignUpButton();
+  	});
+    
+    $(".clickSignUp").click(function(){
+    	$(".logInForm").hide();
+        $(".signUpForm").css("display", "inline-block");
+        $(".signUpForm").show();
+        $(".logInForm input").val("");
+        $(".logInForm input").removeAttr("style");
+        disableLogInButton();
+  	});
+	
+	$(".forgot_password").click(function(){
+		$(".popUp").css("display", "inline-block");
+    	$(".popupBackground").show();
+		$(".popup").show();
+		$(".forgotPWContent").show();
+  	});
+	
+	$(".about_us").click(function(){
+    	$(".popUp").css("display", "inline-block");
+    	$(".popupBackground").show();
+		$(".popup").show();
+		$(".aboutUsContent").show();
+  	});
+	
+	$(".contact_us").click(function(){
+    	$(".popUp").css("display", "inline-block");
+    	$(".popupBackground").show();
+		$(".popup").show();
+		$(".contactUsContent").show();
+  	});
+	
+	$(".popupBackground").click(function(){
+		$(".popupBackground").hide();
+		$(".popup").hide();
+		$(".forgotPWContent").hide();
+		$(".aboutUsContent").hide();
+		$(".contactUsContent").hide();
+        $(".forgotPWContent input").val("");
+        $("#submitResetPW input").val("");
+        $("#resetPWSubmitted").hide();
+        $("#submitResetPW").show();
+	});
+	
+	$(".popup").click(function(e){
+		e.stopPropagation();
+	});
+
+    $(".logInButton").attr("onclick", "");
+    $(".signUpButton").attr("onclick", "");
+
+    $(".logInForm input").on('input', function() {
+        if(ValidateLogIn()){
+            enableLogInButton();
+        }
+        else{
+            disableLogInButton();
+        }
+    });
+
+    $(".signUpForm input").on('input', function() {
+        if(ValidateSignUp()){
+            enableSignUpButton();
+        }
+        else{
+            disableSignUpButton();
+        }
+    });
+
+    $("#username").focus(function() {
+        $("#username-tip").show();
+    })
+    $("#username").focusout(function() {
+        $("#username-tip").hide();
+    });;
+
+    $("#create-password").focus(function() {
+        $("#create-password-tip").show();
+    })
+    $("#create-password").focusout(function() {
+        $("#create-password-tip").hide();
+    });;
+
+    $(document).on('keypress',function(e) {
+        if(e.which == 13 && !$(".popup").is(":visible")) {
+            if($(".signUpForm").is(":hidden")){
+                if(ValidateLogIn()){
+                    if(CheckIfJohnDoe()){
+                        window.location.href = 'homepage.html';
+                    }
+                    else{
+                        alert("The username or password you have entered is incorrect. Please try again.");
+                    }
+                }
+                else{
+                    alert("One or more fields are empty.");
+                    showEmptyFields(".logInForm input");
+                }
+            }
+        }
+    });
+
+    $(".logInButton").click(function(e) {
+        if(!$(".popup").is(":visible") && $(".signUpForm").is(":hidden")) {
+            if(ValidateLogIn()){
+                if(!CheckIfJohnDoe()){
+                    alert("The username or password you have entered is incorrect. Please try again.");
+                }
+            }
+            else{
+                alert("One or more fields are empty.");
+                showEmptyFields(".logInForm input");
+            }
+        }
+    });
+
+    $(document).on('keypress',function(e) {
+        if(e.which == 13 && !$(".popup").is(":visible")) {
+            if ($(".logInForm").is(":hidden")){
+                showEmptyFields(".signUpForm input");
+                if(ValidateSignUp()){
+                    window.location.href = 'homepage.html';
+                }
+                else{
+                    if($("#create-password").val().length < 4){
+                        $("#create-password-error").show();
+                    }
+                    if(!isEmail("#input-email")){
+                        $("#input-email-error").show();
+                    }
+                    var filled = true;
+                    $(".signUpForm input").each(function() {
+                        if ($(this).val() === "") {
+                            filled = false;
+                        }
+                    });
+                    if(!filled){
+                        alert("One or more fields are empty.");
+                    }
+                }
+            }
+        }
+    });
+
+    $(".signUpButton").click(function(e) {
+        if(!$(".popup").is(":visible") && $(".logInForm").is(":hidden")) {
+            showEmptyFields(".signUpForm input");
+            if(ValidateSignUp()){
+            }
+            else{
+                if($("#create-password").val().length < 4){
+                    $("#create-password-error").show();
+                }
+                if(!isEmail("#input-email")){
+                    $("#input-email-error").show();
+                }
+                var filled = true;
+                $(".signUpForm input").each(function() {
+                    if ($(this).val() === "") {
+                        filled = false;
+                    }
+                });
+                if(!filled){
+                    alert("One or more fields are empty.");
+                }
+            }
+        }
+    });
+
+    $("input").change(function() {
+        $(this).removeAttr("style");
+    });
+
+    $(document).on('keypress', function(e) {
+        if(e.which == 13 && $(".forgotPWContent").is(":visible")) {
+            if(isEmail(".forgotPWContent input")){
+                $("#submitResetPW").hide();
+                $("#resetPWSubmitted").show();
+            }
+            else{
+                alert("Ensure that the e-mail is valid");
+            }
+        }
+    });
+
+});
+//------------------------------------------------------------------------------------------------------------------------------------------//
+// End of Javascript
+//------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------//
+//Javascript functions
+//------------------------------------------------------------------------------------------------------------------------------------------//
+//Hard code to check if it is John Doe (Temporary)
+function CheckIfJohnDoe(){
+    if($("#username").val() === "johndoe123" && $("#password").val() === "abc123"){
+            return true;
+        }
+        else{
+            return false;
+    }
+}
+
+function ValidateLogIn(){
+    var filled = true;
+    $(".logInForm input").each(function() {
+        if ($(this).val() === "") {
+            filled = false;
+        }
+    });
+    return filled;
+}
+
+function ValidateSignUp(){
+    var filled = true;
+    $(".signUpForm input").each(function() {
+        if ($(this).val() === "") {
+            filled = false;
+        }
+    });
+    if($("#create-password").val().length < 4){
+        filled = false;
+    }
+    else{
+        $("#create-password-error").hide();
+    }
+    if(isEmail("#input-email")){
+        $("#input-email-error").hide();
+    }
+    else{
+        filled = false;
+    }
+    return filled;
+}
+
+function enableLogInButton(){
+    //Hard code to check if it is John Doe (Temporary)
+    if(CheckIfJohnDoe()){
+        $(".logInButton").attr("onclick", "window.location.href = 'homepage.html';");
+    }
+
+    $(".logInButton").css("background-color", "rgba(0, 128, 255, 1)");
+    $(".logInButton").css("color", "rgba(255, 255, 255, 1)");
+    $(".logInButton").css("cursor", "pointer");
+    $(".logInButton").mouseenter(function() {
+        $(".logInButton").css("background-color", "rgba(0, 108, 235, 1)");
+    });;
+    $(".logInButton").mouseleave(function() {
+        $(".logInButton").css("background-color", "rgba(0, 128, 255, 1)");
+    });;
+}
+
+function disableLogInButton(){
+    $(".logInButton").attr("onclick", "");
+    $(".logInButton").removeAttr("style");
+    $(".logInButton").mouseenter(function() {
+        $(".logInButton").css("background-color", "rgba(0, 128, 255, 0.3)");
+    });;
+    $(".logInButton").mouseleave(function() {
+        $(".logInButton").css("background-color", "rgba(0, 128, 255, 0.3)");
+    });;
+}
+
+function enableSignUpButton(){
+    $(".signUpButton").attr("onclick", "window.location.href = 'homepage.html';");
+    $(".signUpButton").css("background-color", "rgb(255, 215, 0, 1)");
+    $(".signUpButton").css("color", "rgba(255, 255, 255, 1)");
+    $(".signUpButton").css("cursor", "pointer");
+    $(".signUpButton").mouseenter(function() {
+        $(".signUpButton").css("background-color", "rgb(235, 195, 0, 1)");
+    });;
+    $(".signUpButton").mouseleave(function() {
+        $(".signUpButton").css("background-color", "rgb(255, 215, 0, 1)");
+    });;
+}
+
+function disableSignUpButton(){
+    $(".signUpButton").attr("onclick", "");
+    $(".signUpButton").removeAttr("style");
+    $(".signUpButton").mouseenter(function() {
+        $(".signUpButton").css("background-color", "rgb(255, 215, 0, 0.3)");
+    });;
+    $(".signUpButton").mouseleave(function() {
+        $(".signUpButton").css("background-color", "rgb(255, 215, 0, 0.3)");
+    });;
+}
+
+function showEmptyFields(formInputs){
+    $(formInputs).each(function() {
+        if ($(this).val() === "") {
+            $(this).css("background-color", "rgb(255, 225, 225)");
+        }
+    });
+}
+
+function isEmail(email){
+    if ($(email).val().indexOf("@") <= -1 ||  $(email).val().indexOf(".") <= -1){
+        return false;
+    }
+    return true;
+}
+
+//setCookie and getCookie functions from W3Schools (unused)
+function getCookie(name){
+    var re = new RegExp(name + "=([^;]+)");
+    var value = re.exec(document.cookie);
+    return (value != null) ? unescape(value[1]) : null;
+  }
+
+  function setCookie(name, value)
+  {
+    var today = new Date();
+    var expiry = new Date(today.getTime() + 7 * 24 * 3600 * 1000); // plus 30 days
+    document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+  }
+
+//------------------------------------------------------------------------------------------------------------------------------------------//
+//End of Javascript functions
+//------------------------------------------------------------------------------------------------------------------------------------------//
+</script>
+
+<body>
+
+	<div class = "webName"><span style = "color:rgb(120, 255, 50)">SPL</span>-IT</div>
+
+	<div class = "middleForms">
+    
+    	<div class = "buttonGroup">
+    		<div class = "clickLogIn"><div>Log in</div></div>
+        	<div class = "clickSignUp"><div>Sign up</div></div>
+    	</div>
+        
+        <div class = "logInForm">
+            <input placeholder = "Username" id = "username"></input>
+            <span class = "tooltip" id = "username-tip">You may also enter your e-mail</span>
+            <input type = "password" placeholder = "Password" id = "password"></input>
+            <button class = "logInButton" ><span>Log in<span></button>
+            <a class = "forgot_password">Forgot password?</a>
+        </div>
+      
+        <div class = "signUpForm">
+        	<input placeholder = "First name" id = "firstname"></input>
+            <input placeholder = "Last name" id = "lastname"></input>
+            <input type = "email" placeholder = "Enter an e-mail" id = "input-email"></input>
+            <input placeholder = "Create an username" id = "create-username"></input>
+            <input type = "password" placeholder = "Create a password" id = "create-password"></input>
+            <span class = "errortip" id = "input-email-error">This e-mail is not valid</span>
+            <span class = "tooltip" id = "create-password-tip">Minimum 4 characters long</span>
+            <span class = "errortip" id = "create-password-error">Password must be longer than 4 characters</span>
+            <button class = "signUpButton" onclick = "window.location.href = 'homepage.html';"><span>Sign up<span></button>
+        </div>
+        
+    </div>
+	
+	<div class = "popupBackground">
+
+		<div class = "popup">
+			<div class = "aboutUsContent">
+                <span style="font-size: 3vw">Welcome! We are group 15</span><br><br>
+                <span style="font-size: 1.6vw">Our goal is to develop an app that makes splitting a<br> bill easy for you and everyone else.<br></span>
+                <span>
+                <ul>
+                    <span>Our team:</span>  
+                    <ul>
+                        <li>Antony Anuraj</li>
+                        <li>Gurtej Boparai</li>
+                        <li>Kent Van</li>
+                        <li>Zuen (Joe) Yuan</li>
+                    </ul>
+                </ul>
+                </span>
+            </div>
+            
+			<div class = "contactUsContent">
+                <ul>
+                    <span>Customer Support</span>  
+                    <ul>
+                        <li>E-mail: <a>customersupport@split.ca</a></li>
+                        <li>Phone (Canada): 204-111-2222</li>
+                        <li>Phone (International): 1-800-333-4444</li>
+                    </ul>
+                </ul>
+                <ul>
+                <span>Technical Support</span>
+                    <ul>
+                        <li>E-mail: <a>techsupport@split.ca</a></li>
+                        <li>Phone (Canada): 204-555-6666</li>
+                        <li>Phone (International): 1-800-777-8888</li>
+                    </ul>
+                </ul>
+            </div>
+
+			<div class = "forgotPWContent">
+                <span id = "submitResetPW">
+                    <span style="font-size: 2.2vw">Forgot your password?</span><br><br>
+                    <span style="font-size: 1.6vw">Enter the e-mail associated with your account, instructions<br>
+                        will be provided to you to reset your password.
+                    </span>
+                    <input placeholder="Enter e-mail here"></input>
+                </span>
+                <span id = "resetPWSubmitted">
+                    <span style="font-size: 1.6vw">Thank you for you submission!<br> 
+                        Instructions will be sent within 24 hours.
+                    </span>
+                </span>
+
+            </div>
+		</div>
+    </div>
+    
+    <div class = "bottomInfo">
+        <a class = "about_us">About us</a>
+        <a class = "contact_us">Contact us</a>
+    </div>
+
+</body>
+
+</html>

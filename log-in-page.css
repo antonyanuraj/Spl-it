@@ -1,0 +1,347 @@
+* {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+body{
+    /* background-color: black; */
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    width: 100%;
+    /* height: 100%; */
+    position: relative;
+}
+
+button{
+    float: left;
+    outline: none;
+}
+
+input{
+    display: block;
+    margin: 1vw auto;
+    width: 20vw;
+    height: 2vw;
+    font-size: 1.25vw;
+    border: none;
+    border-radius: 0.5vw;
+    outline: none;
+    font-family: arial;
+}
+
+input:focus{
+    background-color: rgb(235, 235, 235);
+}
+
+a{
+    cursor: pointer;
+}
+
+ul, li{
+    text-align: left;
+    font-size: 1.5vw; 
+    list-style: inherit;
+}
+
+li{
+    margin: 0.5vw;
+}
+
+/*Classes*/
+.logInForm input:first-child, .signUpForm input:first-child{
+    margin-top: 1.2vw;
+}
+
+.webName{
+    color: white;
+    text-align : center;
+    font-size: 8vw;
+    font-family: arial;
+    position: relative;
+    margin: 0 auto;
+}
+
+.middleForms{
+    text-align: center;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.buttonGroup{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    margin-top: 5vw;
+    cursor: pointer;
+}
+
+.clickLogIn, .clickSignUp{
+    background-color: rgb(160, 160, 160);
+    color: white;
+    width: 12vw;
+    height: 3vw;
+    display: inline-block;
+    /* border-bottom: 0.1vw solid white; */
+}
+
+.clickLogIn{
+    border-radius: 1vw 0 0 0;
+}
+
+.clickSignUp{
+    border-radius: 0 1vw 0 0;
+    /* border-left: 0.1vw solid white; */
+}
+
+.clickLogIn div, .clickSignUp div{
+    font-family: arial;
+    font-size: 1.8vw;
+    text-align: center;
+    margin-top: 0.5vw;
+}
+
+.clickLogIn:hover, .clickSignUp:hover{
+    background-color: rgb(140, 140, 140);
+}
+
+.clickLogIn:active, .clickSignUp:active{
+    background-color: rgb(120, 120, 120);
+}
+
+.buttonGroup div:first-child{
+    border-right: none;
+}
+
+.logInForm, .signUpForm{
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(180, 180, 180);
+    border-top: none; 
+    width: 24vw;
+    height: max-content;
+    border-radius: 0 0 1vw 1vw;
+    position: relative;
+    overflow: inherit;
+}
+
+.logInForm{
+    display: inline-block;
+}
+
+.signUpForm{
+    display: none
+}
+
+.bottomInfo{
+    position: absolute;
+    bottom: 0;
+    display: none;
+}
+
+.about_us{
+    position: relative;
+    left: 5%;
+    bottom: 5%;
+    font-family: arial;
+    color: rgb(220, 220, 220);
+    font-size: 1.2vw;
+}
+
+.contact_us{
+    position: relative;
+    left: 30%;
+    bottom: 5%;
+    font-family: arial;
+    color: rgb(220, 220, 220);
+    font-size: 1.2vw;
+}
+
+.forgot_password{
+    float: right;
+    text-decoration: underline;
+    font-family: arial;
+    font-size: 1vw;   
+    color: white;
+    margin: 0 auto;
+    position: absolute;
+    width: max-content;
+    top: 7vw;
+    right: 0.5vw;
+}
+
+.need_help{
+    float: right;
+    text-decoration: underline;
+    font-family: arial;
+    font-size: 1vw;   
+    color: white;
+}
+
+.logInButton, .signUpButton{
+    font-family: arial;
+    font-size: 1.3vw;
+    text-align: center;
+    border: none;
+    margin: 0 0 1vw 2vw;
+    border-radius: 0.5vw;
+    width: 6vw;
+    height: 2.5vw;
+    white-space: nowrap;
+    cursor: not-allowed;
+}
+
+.logInButton{
+    background-color: rgba(0, 128, 255, 0.3);
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.signUpButton{
+    background-color: rgb(255, 215, 0, 0.3);
+    color: rgba(255, 255, 255, 0.3);;
+}
+
+.popupBackground{
+    display: none;
+    width: 100vw;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    cursor: pointer;
+}
+
+.popup{
+    display: none;
+    width: 60vw;
+    height:max-content;
+    z-index: 11;
+    position: relative;
+    background-color: rgb(160, 160, 160);
+    margin: 0 auto;
+    border-radius: 1vw;
+    top: 6vw;
+    overflow: auto;
+    cursor: default;
+}
+
+.popup div{
+    display: none;
+    font-family: arial;
+    color: white;
+    position: relative;
+    width: 100%;
+    height: max-content;
+    user-select: text;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    text-align: center;
+}
+
+.popup ul span{
+    font-size: 2.2vw;
+    text-align: left;
+    position: relative;
+}
+
+.popup a{
+    text-decoration: underline;
+    color:blue;
+}
+
+.tooltip, .errortip{
+    display: none;
+    position: absolute;
+    color: black;
+    font-family: arial;
+    font-size: 1vw;
+    white-space: nowrap;
+    padding: 0.2vw;
+    border-radius: 0.5vw;
+    height: max-content;
+    width: max-content;
+    padding: 0.5vw;
+}
+
+.tooltip{
+    background-color: rgb(188, 255, 202);
+}
+
+.errortip{
+    background-color: rgb(255, 138, 102);
+}
+
+.tooltip:after, .errortip:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -0.5vw;
+    border-width: 0.5vw;
+    border-style: solid;
+    border-color: transparent rgb(188, 255, 202) transparent transparent;
+}
+
+.tooltip:after{
+    border-color: transparent rgb(188, 255, 202) transparent transparent;
+}
+
+.errortip::after{
+    border-color: transparent rgb(255, 138, 102) transparent transparent;
+}
+
+
+#username-tip{
+    left: 22.6vw;
+    top: 1.2vw;
+}
+
+#input-email-error{
+    left: 22.6vw;
+    top: 7.5vw;
+}
+
+#input-password-error{
+    left: 22.6vw;
+    top: 8.7vw;
+}
+
+#create-password-tip{
+    left: 22.6vw;
+    top: 13.8vw;
+}
+
+#create-password-error{
+    left: 22.6vw;
+    top: 13.8vw;
+}
+
+#resetPWSubmitted{
+    display: none;
+}
+
+/*Scrollbar CSS from https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp*/
+::-webkit-scrollbar {
+    width: auto;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.4); 
+    border-radius: 0.2vw;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(255, 255, 255);
+    border-radius: 0.2vw; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(200, 200, 200); 
+  }

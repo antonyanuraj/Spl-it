@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>Create Bill</title>
+</head>
+
+<div class="navigation_bar">
+
+    <a class="active" href="homepage.html"> <span style="color:rgb(120, 255, 50)">SPL</span>-IT </a>
+
+    <div class="dropdown">
+        <button class="dropBoxs"> Bills </button>
+        <div class="dropdown-content">
+            <a href="createBill.html"> Add Bill </a>
+            <a href="bill1.html"> View Bills </a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropBoxs"> Groups </button>
+        <div class="dropdown-content">
+            <a href="addGroup.html"> Add Group </a>
+            <a href="viewGroup.html"> View Groups </a>
+        </div>
+    </div>
+
+    <div id="verticalNav" class="sideNavigation">
+        <a href="javascript:void(0)" class="closeButton" onclick="closeNavigation()">&times;</a>
+        <a href="about_us.html">About Us</a>
+        <a href="contact us.html">Contact</a>
+        <a href="index.html">Logout</a>
+    </div>
+
+    <span style="font-size:40px; cursor:pointer; float:right; color: white;" onclick="openNavigation()">
+        &#9776;
+    </span>
+
+    <div class="dropdownR">
+        <button class="dropBoxsR">
+            <img src=" images/bellicon.png " alt="notifications" width="15%" height="15%"
+                style="float:right; border-block-width:20;">
+        </button>
+        <div class="dropdownR-content">
+
+            <a href="bill1.html">
+                <p>You added a "Rent" $780.00</p>
+            </a>
+            <a href="bill1.html">
+                <p>Sam added "Hydro" <br>You owe him $25.20</p>
+            </a>
+            <a href="bill1.html">
+                <p>Ken added "Dinner"<br>You owe him $30.00</p>
+            </a>
+            <a href="bill1.html">
+                <p>You settled "Groceries"<br>You paid $28.59</p>
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+<body>
+    <h1>Create a bill</h1>
+
+    <div class="container">
+        <div>
+            <p style="float: left; width: 50%; text-align: left;"><a href="">Back</a></p>
+            <p style="float: left; width: 50%; text-align: right;">* Required Input</p>
+
+            <div class="iconInput">
+                <i class="fa fa-usd icon"></i>
+                <input id="billAmount" type="text" style="padding: 5px 15px; font-size: 20px;" placeholder="Amount"
+                    autofocus>
+            </div>
+
+            <div class="iconInput">
+                <i class="fa fa-book icon"></i>
+                <input type="text" style="padding: 5px 15px; font-size: 20px;" placeholder="Description">
+            </div>
+
+            <button type="button" class="button" onclick="optionalInfo()">Addtional Info</button>
+        </div>
+    </div>
+
+    <!-- Optional Content  -->
+    <div class="container">
+        <div id="optionalContent" style="display: none;">
+            <input type="file" class="fileInput">Attach a photo<br>
+            <input type="file" class="fileInput">Attach a file<br>
+            <div class="iconInput">
+                <i class="fa fa-map-marker icon"></i>
+                <input type="text" style="padding: 5px 15px;" placeholder="Enter a location"><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add others  -->
+    <div class="container">
+        <p style="display: inline;">* Split with <u>you</u> and:
+            <div id="name1" class="startHidden">A</div>
+            <div id="name2" class="startHidden">, B</div>
+        </p>
+        <button type="button" id="friendButton" class="smallButton" onclick="addOther('name1', this.id)">Friend
+            A</button>
+        <button type="button" id="groupButton" class="smallButton" onclick="addOther('name2', this.id)">Group
+            "Friend"</button>
+    </div>
+
+    <!-- Split options -->
+    <div class="container">
+        <p>
+            * Paid by
+            <select id="who">
+                <option selected disabled>(Select)</option>
+                <option>You</option>
+                <option>Friend 1</option>
+                <option>Friend 2</option>
+            </select>
+            and split
+            <select id="type">
+                <option selected disabled>(Select)</option>
+                <option>Equally</option>
+                <option>Percentage</option>
+                <option>Amount</option>
+            </select>
+        </p>
+    </div>
+
+    <!-- Current user's split -->
+    <div class="container">
+        <div id="selectedUser" class="startHidden">
+            <p id="theUser" style="display: inline;"></p>
+            <input id="userAmount" type="text">
+            <button type="button" class='splitButton' id="nextButton">Next</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="allOtherUsers" class="startHidden">
+            <p id="user1"></p>
+            <p id="user2"></p>
+        </div>
+    </div>
+
+    <!-- Submit buttons -->
+    <div class="container">
+        <form style="text-align: right; margin-right: 20%;">
+            <button class="button" type="submit">Save</button>
+            <button class="button" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- javascript  -->
+    <script>
+        function closeNavigation() {
+            document.getElementById("verticalNav").style.width = "0";
+        }
+
+        function openNavigation() {
+            document.getElementById("verticalNav").style.width = "200px";
+        }
+
+        function optionalInfo() {
+            var x = document.getElementById("optionalContent");
+            var y = document.getElementById("expand");
+
+            if (x.style.display == "none") {
+                x.style.display = "block";
+                y.innerHTML = "Hide";
+            } else {
+                x.style.display = "none";
+                y.innerHTML = "Show";
+            }
+        }
+
+        function displayOtherUsers(inputID, displayID) {
+            if (validateUserAmount(inputID)) {
+                $("#" + displayID).css("display", "block");
+            }
+        }
+
+        $(document).ready(function () {
+            $("#billAmount").change(function () {
+                validateUserAmount('billAmount');
+            });
+
+            $("#who, #type").change(function () {
+                var who = $("#who").val();
+                var type = $("#type").val();
+
+                $("#userAmount").css("display", "inline-block");
+                $("#nextButton").css("display", "inline-block");
+
+                if (who != null && type != null) {
+                    $("#selectedUser").css("display", "block");
+
+                    // who pays
+                    if (who == "You") {
+                        $("#theUser").text("* You pay: ");
+                        $("#user1").text("* Friend 1 pay: ");
+                        $("#user2").text("* Friend 2 pay: ");
+                    } else if (who == "Friend 1") {
+                        $("#theUser").text("* Friend 1 pays: ");
+                        $("#user1").text("* You pay: ");
+                        $("#user2").text("* Friend 2 pay: ");
+                    } else if (who == "Friend 2") {
+                        $("#theUser").text("* Friend 2 pays: ");
+                        $("#user1").text("* You pay: ");
+                        $("#user2").text("* Friend 1 pay: ");
+                    }
+
+                    // split type
+                    if (type == "Equally") {
+                        $("#userAmount").attr("placeholder", " amount");
+                    } else if (type == "Percentage") {
+                        $("#userAmount").attr("placeholder", " Your percentage (in whole numbers. Ex: 75.5 is 75.5%)");
+                        $("#user1").append("<input type='text' class='splitInput' placeholder=' percentage' id='calc1'> <button class='splitButton' onclick='otherPercentCheck()' id='calc1b'>save</button>");
+                        $("#user2").append("<input type='text' class='splitInput' placeholder=' percentage' id='calc2'> <button class='splitButton' onclick='otherPercentCheck()' id='calc2b'>save</button>");
+                    } else if (type == "Amount") {
+                        $("#userAmount").attr("placeholder", " amount");
+                        $("#user1").append("<input type='text' class='splitInput' placeholder=' amount' id='calc1'> <button class='splitButton' onclick='otherAmountCheck()' id='calc1b'>save</button>");
+                        $("#user2").append("<input type='text' class='splitInput' placeholder=' amount' id='calc2'> <button class='splitButton' onclick='otherAmountCheck()' id='calc2b'>save</button>");
+                    }
+
+                    // if user changed who paid or which type of split then reset
+                    var a = $("#allOtherUsers").css("display");
+
+                    if (a == "block") {
+                        $("#allOtherUsers").css("display", "none");
+                        $("#userAmount").val("");
+                    }
+                }
+            });
+
+            $("#nextButton").click(function () {
+                var who = $("#who").val();
+                var type = $("#type").val();
+                if (validateUserAmount("billAmount")) {
+                    if (validateWithAmount("userAmount")) {
+                        if (type == "Equally" || type == "Percentage" || type == "Amount") {
+                            $("#allOtherUsers").css("display", "block");
+                        }
+                    }
+                }
+            });
+
+        }); // end of jQuery
+
+        function validateUserAmount(inputID) {
+            var x = $("#" + inputID).val();
+            if (x == "" || x == 0) {
+                alert("Please enter a valid amount");
+                return false;
+            } else {
+                for (i = 0; i < x.length; i++) {
+                    if (!(x.charCodeAt(i) >= 48 && x.charCodeAt(i) <= 57 || x.charCodeAt(i) == 46)) {
+                        // if a character is not a digit or decimal
+                        alert("Please enter a valid amount");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function validateWithAmount(inputID) {
+            // if input is valid
+            if (!validateUserAmount(inputID)) {
+                return false;
+            }
+
+            // calculate if valid
+            var billTotal = parseFloat($("#billAmount").val());
+            var userInput = parseFloat($('#' + inputID).val());
+            var type = $("#type").val();
+
+            window.localStorage.setItem('billTotal', billTotal);
+
+            if (type == "Equally") {
+                if (userInput > billTotal) {
+                    alert("Amount must be less than bill's total");
+                    return false;
+                } else {
+                    $("#theUser").append("$" + userInput);
+                    $("#userAmount").css("display", "none");
+                    $("#nextButton").css("display", "none");
+
+                    var othersEqual = (billTotal - userInput) / 2;
+                    $("#user1").append("$" + othersEqual);
+                    $("#user2").append("$" + othersEqual);
+
+                    return true;
+                }
+            } else if (type == "Percentage") {
+                if (userInput > 100 || userInput <= 0) {
+                    alert("Percentage must be less than 100");
+                    return false;
+                } else {
+                    var percentToAmount = userInput / 100 * billTotal;
+                    window.localStorage.setItem('percent', userInput / 100);
+
+
+                    $("#theUser").append("$" + percentToAmount);
+                    $("#userAmount").css("display", "none");
+                    $("#nextButton").css("display", "none");
+                    return true;
+                }
+            } else if (type == "Amount") {
+                if (userInput > billTotal) {
+                    alert("Amount must be less than or equal to bill's total");
+                    return false;
+                } else {
+                    $("#theUser").append("$" + userInput);
+                    $("#userAmount").css("display", "none");
+                    $("#nextButton").css("display", "none");
+                    window.localStorage.setItem('userInitial', userInput);
+                }
+            }
+            return true;
+        }
+
+        function addOther(buttonID, theID) {
+            var x = document.getElementById(buttonID);
+            var y = document.getElementById(theID);
+            x.style.display = "inline";
+            y.style.display = "none";
+        }
+
+        function otherAmountCheck() {
+            var billTotal = parseFloat(window.localStorage.getItem('billTotal'));
+            var initialPay = parseFloat(window.localStorage.getItem('userInitial'));
+            var value1 = parseFloat($("#calc1").val());
+            var value2 = parseFloat($("#calc2").val());
+
+            if ($("#calc1").val() != "") {
+                validateUserAmount('calc1');
+                if (value1 > (billTotal - initialPay)) {
+                    alert("Value be less or equal to " + (billTotal - initialPay));
+                } else {
+                    $("#user1").append("$" + value1);
+                    $("#calc1").css("display", "none");
+                    $("#calc1b").css("display", "none");
+
+                    $("#user2").append("$" + (billTotal - initialPay - value1));
+                    $("#calc2").css("display", "none");
+                    $("#calc2b").css("display", "none");
+                }
+            } else if ($("#calc2").val() != "") {
+                validateUserAmount('calc2');
+                if (value2 > (billTotal - initialPay)) {
+                    alert("Value be less or equal to " + (billTotal - initialPay));
+                } else {
+                    $("#user2").append("$" + value2);
+                    $("#calc2").css("display", "none");
+                    $("#calc2b").css("display", "none");
+
+                    $("#user1").append("$" + (billTotal - initialPay - value2));
+                    $("#calc1").css("display", "none");
+                    $("#calc1b").css("display", "none");
+                }
+            }
+        }
+
+        function otherPercentCheck() {
+            var percent = parseFloat(window.localStorage.getItem('percent'));
+            var billTotal = parseFloat(window.localStorage.getItem('billTotal'));
+            var value1 = parseFloat($("#calc1").val()) / 100;
+            var value2 = parseFloat($("#calc2").val()) / 100;
+
+            if ($("#calc1").val() != "") {
+                validateUserAmount('calc1');
+                if (value1 > (1 - percent)) {
+                    alert("Value be less or equal to " + ((1 - percent) * 100));
+                } else {
+                    $("#user1").append("$" + (value1 * billTotal).toFixed(2));
+                    $("#calc1").css("display", "none");
+                    $("#calc1b").css("display", "none");
+
+                    $("#user2").append("$" + ((1 - percent - value1) * billTotal).toFixed(2));
+                    $("#calc2").css("display", "none");
+                    $("#calc2b").css("display", "none");
+                }
+            } else if ($("#calc2").val() != "") {
+                validateUserAmount('calc2');
+                if (value2 > (1 - percent)) {
+                    alert("Value be less or equal to " + ((1 - percent) * 100));
+                } else {
+                    $("#user2").append("$" + (value2 * billTotal).toFixed(2));
+                    $("#calc2").css("display", "none");
+                    $("#calc2b").css("display", "none");
+
+                    $("#user1").append("$" + ((1 - percent - value2) * billTotal).toFixed(2));
+                    $("#calc1").css("display", "none");
+                    $("#calc1b").css("display", "none");
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

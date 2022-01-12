@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    background-image: url("images/MorpheusDen.png");
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.navigation_bar {
+    overflow: hidden;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+} 
+.navigation_bar a {
+    float: left;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    padding: 15px 17px;
+    text-decoration: none;
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+.dropdown .dropBoxs {
+    font-size: 25px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 15px 17px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+.navigation_bar a:hover, .dropdown:hover .dropBoxs {
+    background-color: grey;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px black;
+    z-index: 1;
+}
+.dropdown-content a {
+    float: none;
+    display: block;
+    color: black;
+    padding: 13px 17px;
+    text-decoration: none;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.central {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+.sideNavigation {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    background-color: black;
+    z-index: 1;
+    top: 0;
+    right: 0; 
+    overflow-x: hidden;
+    padding-top: 50px;
+    transition: 0.7s;
+}
+.sideNavigation a {
+    font-size: 24px;
+    padding: 7px 7px 7px 30px;
+    display: block;
+    transition: 0.5s;
+}
+.sideNavigation a:hover {
+    color: white;
+  }
+.sideNavigation .closeButton {
+    right: 25px;
+    margin-left: 40px;
+    font-size: 34px;
+    position: absolute;
+    top: 0;
+}
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+.dropdownR {
+    float: right;
+    overflow: hidden;
+}
+.dropdownR .dropBoxsR {
+    border: none;
+    outline: none;
+    color: white;
+    padding: 15px 17px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+.dropdownR-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px black;
+    z-index: 1;
+}
+.dropdownR-content a {
+    float: none;
+    display: block;
+    font-size: 16px;
+    color: black;
+    padding: 13px 17px;
+    text-decoration: none;
+    text-align: justify;
+}
+.dropdownR-content a:hover {
+    background-color: #ddd;
+}
+.dropdownR:hover .dropdownR-content {
+    display: block;
+}
+.central1 {
+    text-align: center;
+}
+.central1:link, .central1:visited {
+    color: white;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }

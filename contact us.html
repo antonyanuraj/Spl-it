@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="contact us.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="navigation_bar">
+
+        <a class= "active" href="homepage.html"><span style = "color: rgb(120, 255, 50)">SPL</span>-IT</a>
+
+        <div class="dropdown">
+            <button class="dropBoxs"> Bills </button>
+            <div class="dropdown-content">
+                <a href="createBill.html"> Add Bill </a>
+                <a href="bill1.html"> View Bills </a>
+            </div>
+        </div> 
+
+        <div class="dropdown">
+            <button class="dropBoxs"> Groups </button>
+            <div class="dropdown-content">
+                <a href="addGroup.html"> Add Group </a>
+                <a href="viewGroup.html"> View Groups </a>
+            </div>
+        </div>
+
+        <div id="verticalNav" class="sideNavigation">
+            <a href="javascript:void(0)" class="closeButton" onclick="closeNavigation()">&times;</a>
+            <a href="about_us.html">About Us</a>
+            <a href="contact us.html">Contact</a>
+            <a href="index.html">Logout</a>
+        </div>
+        
+        <span style="font-size:40px; cursor:pointer; float:right; color: white;" onclick="openNavigation()">
+            &#9776;
+        </span>
+
+        <div class="dropdownR">
+                <button class="dropBoxsR">
+                    <img src=" images/bellicon.png " alt="notifications" width="15%" height="15%" style="float:right; border-block-width:20;">
+                </button>
+                <div class="dropdownR-content">
+                    
+                        <a href="bill1.html"> <p>You added a "Rent" $780.00</p> </a>
+                        <a href="bill1.html"> <p>Sam added "Hydro" <br>You owe him $25.20</p> </a>
+                        <a href="bill1.html"> <p>Ken added "Dinner"<br>You owe him $30.00</p> </a>
+                        <a href="bill1.html"> <p>You settled "Groceries"<br>You paid $28.59</p> </a>
+                    
+                </div>
+        </div> 
+
+    </div>
+    <script>
+        function closeNavigation() { 
+            document.getElementById("verticalNav").style.width = "0"; 
+        } 
+        function openNavigation() { 
+            document.getElementById("verticalNav").style.width = "200px";    
+        }
+    </script>
+    <body>
+        <div class="central">
+            <br>
+            <ul>
+                <span>Customer Support</span>  
+                <ul>
+                    <li>E-mail: <a>customersupport@split.ca</a></li>
+                    <li>Phone (Canada): 204-111-2222</li>
+                    <li>Phone (International): 1-800-333-4444</li>
+                </ul>
+            </ul>
+            <br><br><br>
+            <ul>
+            <span>Technical Support</span>
+                <ul>
+                    <li>E-mail: <a>techsupport@split.ca</a></li>
+                    <li>Phone (Canada): 204-555-6666</li>
+                    <li>Phone (International): 1-800-777-8888</li>
+                </ul>
+            </ul>
+        </div>
+    </body>
+
+</html>

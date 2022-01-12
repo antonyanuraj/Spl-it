@@ -1,0 +1,188 @@
+<html>
+  <body>
+  <title>View Group</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css_style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="navigation_bar">
+
+        <a class= "active" href="homepage.html"><span style = "color:rgb(120, 255, 50)">SPL</span>-IT </a>
+
+        <div class="dropdown">
+            <button class="dropBoxs"> Bills </button>
+            <div class="dropdown-content">
+                <a href="createBill.html"> Add Bill </a>
+                <a href="bill1.html"> View Bills </a>
+            </div>
+        </div> 
+
+        <div class="dropdown">
+            <button class="dropBoxs"> Groups </button>
+            <div class="dropdown-content">
+                <a href="addGroup.html"> Add Group </a>
+                <a href="viewGroup.html"> View Groups </a>
+            </div>
+        </div>
+
+        <div id="verticalNav" class="sideNavigation">
+            <a href="javascript:void(0)" class="closeButton" onclick="closeNavigation()">&times;</a>
+            <a href="about_us.html">About Us</a>
+            <a href="contact us.html">Contact</a>
+            <a href="index.html">Logout</a>
+        </div>
+        
+        <span style="font-size:40px; cursor:pointer; float:right; color: white;" onclick="openNavigation()">
+            &#9776;
+        </span>
+
+        <div class="dropdownR">
+                <button class="dropBoxsR">
+                    <img src=" images/bellicon.png " alt="notifications" width="15%" height="15%" style="float:right; border-block-width:20;">
+                </button>
+                <div class="dropdownR-content">
+                    
+                        <a href="bill1.html"> <p>You added a "Rent" $780.00</p> </a>
+                        <a href="bill1.html"> <p>Sam added "Hydro" <br>You owe him $25.20</p> </a>
+                        <a href="bill1.html"> <p>Ken added "Dinner"<br>You owe him $30.00</p> </a>
+                        <a href="bill1.html"> <p>You settled "Groceries"<br>You paid $28.59</p> </a>
+                    
+                </div>
+        </div> 
+
+    </div>
+    <script>
+        function closeNavigation() { 
+            document.getElementById("verticalNav").style.width = "0"; 
+        } 
+        function openNavigation() { 
+            document.getElementById("verticalNav").style.width = "200px";    
+        }
+    </script>
+<h1 style='text-align: center'>GROUPS</h1>
+
+ <style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+    .block1 {
+  background-color: brown;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  font-size: 12px;
+    }
+      .block2 {
+  background-color:cadetblue;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  font-size: 12px;
+}
+</style>
+  <button class="accordion">ROOMMATES</button>
+<div class="panel">
+  <span class=block1 >YOU OWE: $78.25</span>
+   <span class=block2 >YOU ARE OWED: $125.25 </span>
+  <h4>GROUP MEMBERS:</h4>
+  <ul style="list-style-type:square;">
+  <li>Antony</li>
+  <li>Gurtej</li>
+  <li>Kent</li>
+   <li>Joe</li>
+</ul>
+</div>
+
+<button class="accordion">HUSTLERS</button>
+<div class="panel">
+  <span class=block1 >YOU OWE: $25.53</span>
+   <span class=block2 >YOU ARE OWED: $105.25 </span>
+  <h4>GROUP MEMBERS:</h4>
+  <ul style="list-style-type:square;">
+  <li>Antony</li>
+  <li>Gurtej</li>
+  <li>Warner</li>
+   <li>Root</li>
+</ul>
+</div>
+
+<button class="accordion">FRIENDS</button>
+<div class="panel">
+  <span class=block1 >YOU OWE: $200.25</span>
+   <span class=block2 >YOU ARE OWED: $75.00 </span>
+  <h4>GROUP MEMBERS:</h4>
+  <ul style="list-style-type:square;">
+  <li>Antony</li>
+  <li>Smith</li>
+  <li>Mark</li>
+   <li>Joe</li>
+    <li>Steve</li>
+</ul>
+</div>
+
+<button class="accordion">SOUTHVIEW PLAZA 112</button>
+<div class="panel">
+  <span class=block1 >YOU OWE: $200.25</span>
+   <span class=block2 >YOU ARE OWED: $75.00 </span>
+  <h4>GROUP MEMBERS:</h4>
+  <ul style="list-style-type:square;">
+  <li>John</li>
+  <li>Smith</li>
+  <li>Mark</li>
+   <li>Joe</li>
+    <li>kane</li>
+</ul>
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+  <br><br>
+  <style>
+.button {
+  background-color: #FF4500;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+</style>
+<button class="button" onclick="window.location.href='./addGroup.html'">CREATE A NEW GROUP</button>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css_style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="navigation_bar">
+
+        <a class= "active" href="homepage.html"> <span style = "color:rgb(120, 255, 50)">SPL</span>-IT </a>
+
+        <div class="dropdown">
+            <button class="dropBoxs"> Bills </button>
+            <div class="dropdown-content">
+                <a href="createBill.html"> Add Bill </a>
+                <a href="bill1.html"> View Bills </a>
+            </div>
+        </div> 
+
+        <div class="dropdown">
+            <button class="dropBoxs"> Groups </button>
+            <div class="dropdown-content">
+                <a href="addGroup.html"> Add Group </a>
+                <a href="viewGroup.html"> View Groups </a>
+            </div>
+        </div>
+
+        <div id="verticalNav" class="sideNavigation">
+            <a href="javascript:void(0)" class="closeButton" onclick="closeNavigation()">&times;</a>
+            <a href="about_us.html">About Us</a>
+            <a href="contact us.html">Contact</a>
+            <a href="index.html">Logout</a>
+        </div>
+        
+        <span style="font-size:40px; cursor:pointer; float:right; color: white;" onclick="openNavigation()">
+            &#9776;
+        </span>
+
+        <div class="dropdownR">
+                <button class="dropBoxsR">
+                    <img src=" images/bellicon.png " alt="notifications" width="15%" height="15%" style="float:right;">
+                </button>
+                <div class="dropdownR-content">
+                    
+                        <a href="bill1.html"> <p>You added a "Rent" $780.00</p> </a>
+                        <a href="bill1.html"> <p>Sam added "Hydro" <br>You owe him $25.20</p> </a>
+                        <a href="bill1.html"> <p>Ken added "Dinner"<br>You owe him $30.00</p> </a>
+                        <a href="bill1.html"> <p>You settled "Groceries"<br>You paid $28.59</p> </a>
+                    
+                </div>
+        </div> 
+
+    </div>
+    <script>
+        function closeNavigation() { 
+            document.getElementById("verticalNav").style.width = "0"; 
+        } 
+        function openNavigation() { 
+            document.getElementById("verticalNav").style.width = "200px";    
+        }
+    </script>
+    <body>
+        <div class="central">
+            <h2>Welcome! We are group 15</h2>
+            <h3 style="font-size: 1.6vw">Our goal is to develop an app that makes splitting a<br> bill easy for you and everyone else.</h3>
+            <span>
+            <ul>
+                <span>Our team:</span>  
+                <ul style="list-style-type: none; font-size: 30px;">
+                    <li>Antony Anuraj</li>
+                    <li>Gurtej Boparai</li>
+                    <li>Kent Van</li>
+                    <li>Zuen (Joe) Yuan</li>
+                </ul>
+            </ul>
+        </div>    
+    </body>
+
+</html>

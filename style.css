@@ -1,0 +1,128 @@
+h1 {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.inputBox {
+    width: 30%;
+    height: 30px;
+    margin-top: 2%;
+    padding: 5px 15px;
+}
+
+.inputMoneyInt {
+    width: 15%; 
+    height: 30px; 
+    margin-top: 2%;
+    padding: 5px 15px;
+}
+
+.smallButton {
+    font-size: 10px;
+    background-color: darkseagreen;
+    font-weight: bold;
+    border: none;
+    padding: 2px 10px;   
+}
+
+.icon {
+    padding: 10px;
+    background: turquoise;
+    color: white;
+    min-width: 20px;
+    text-align: center;
+}
+
+.inputMoneyDec {
+    width: 10%; 
+    height: 30px; 
+    margin-top: 2%;
+    padding: 5px 15px;
+}
+
+.container {
+    margin-top: 2%;
+    width: 50%;
+    margin-left: 30%;
+}
+
+.middleContainer {
+    margin-top: 10%;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+}
+
+.settleButton {
+    display: inline;
+}
+
+.containerView {
+    margin-top: 2%;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.containerViewActiveItem {
+    border-style: solid;
+    padding: 5px 15px;
+    background-color: rgba(37, 173, 19, 0.836);
+    color: white;
+    margin-top: 2%;
+}
+
+.containerViewInactiveItem {
+    border-style: solid;
+    padding: 5px 15px;
+    background-color: grey;
+    margin-top: 2%;
+}
+
+.containerViewActiveItem:hover {
+    background-color: rgb(31, 247, 175);
+}
+
+.iconInput {
+    display: flex;
+    width: 50%;
+    margin-top: 2%;
+}
+
+.centerContent {
+    text-align: center;
+}
+
+.fileInput {
+    margin-top: 1%;
+    text-align: left;
+}
+
+.startHidden {
+    display: none;
+}
+
+.button {
+    margin-top: 2%;
+    font-size: 15px;
+    background-color: darkseagreen;
+    border: none;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.button:hover {
+    background-color: rgb(94, 182, 94);
+}
+
+.smallButton:hover {
+    background-color: rgb(94, 182, 94);
+}
+
+.splitInput {
+    width: 25%;
+}
+
+.splitButton {
+    background-color: darkseagreen;
+    color: white;
+}

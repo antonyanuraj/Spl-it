@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>View Bill</title>
+</head>
+
+<div class="navigation_bar">
+
+    <a class="active" href="homepage.html"> <span style="color:rgb(120, 255, 50)">SPL</span>-IT </a>
+
+    <div class="dropdown">
+        <button class="dropBoxs"> Bills </button>
+        <div class="dropdown-content">
+            <a href="createBill.html"> Add Bill </a>
+            <a href="bill1.html"> View Bills </a>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropBoxs"> Groups </button>
+        <div class="dropdown-content">
+            <a href="addGroup.html"> Add Group </a>
+            <a href="viewGroup.html"> View Groups </a>
+        </div>
+    </div>
+
+    <div id="verticalNav" class="sideNavigation">
+        <a href="javascript:void(0)" class="closeButton" onclick="closeNavigation()">&times;</a>
+        <a href="about_us.html">About Us</a>
+        <a href="contact us.html">Contact</a>
+        <a href="index.html">Logout</a>
+    </div>
+
+    <span style="font-size:40px; cursor:pointer; float:right; color: white;" onclick="openNavigation()">
+        &#9776;
+    </span>
+
+    <div class="dropdownR">
+        <button class="dropBoxsR">
+            <img src=" images/bellicon.png " alt="notifications" width="15%" height="15%"
+                style="float:right; border-block-width:20;">
+        </button>
+        <div class="dropdownR-content">
+
+            <a href="bill1.html">
+                <p>You added a "Rent" $780.00</p>
+            </a>
+            <a href="bill1.html">
+                <p>Sam added "Hydro" <br>You owe him $25.20</p>
+            </a>
+            <a href="bill1.html">
+                <p>Ken added "Dinner"<br>You owe him $30.00</p>
+            </a>
+            <a href="bill1.html">
+                <p>You settled "Groceries"<br>You paid $28.59</p>
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+<body>
+    <div class="containerView">
+        <h2 style="color: indigo;">You owe (click to settle!):</h2>
+        <div class="containerViewActiveItem" id="bill1">
+            <p>I owe 'Sam' $10 for "Hydro"</p>
+        </div>
+
+        <div class="containerViewActiveItem" id="bill2">
+            <p>I owe 'Ken' $15 for "Dinner"</p>
+        </div>
+
+        <h2>Past Bills</h2>
+        <div class="containerViewInactiveItem" id="bill1p" style="display: none">
+            <p>I owe 'Sam' $10 for "Hydro"</p>
+        </div>
+
+        <div class="containerViewInactiveItem" id="bill2p" style="display: none;">
+            <p>I owe 'Ken' $15 for "Dinner"</p>
+        </div>
+
+        <div class="containerViewInactiveItem">
+            <p>I owed 'Home' $10 for "Rent"</p>
+        </div>
+
+        <div class="containerViewInactiveItem">
+            <p>I owed 'John' $15 for "Groceries"</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#settled").click(function () {
+                $("#billInfo").text("");
+                $("#billInfo").append("<h1>Bill Settled!</h1>")
+            });
+
+            $("#bill1").click(function () {
+                $("#bill1").text("");
+                $("#bill1").append("<h3>Bill settled!</h3>")
+                setTimeout(function () { $("#bill1").hide(); }, 1000);
+                $("#bill1p").css("display", "block");
+            });
+
+            $("#bill2").click(function () {
+                $("#bill2").text("");
+                $("#bill2").append("<h3>Bill settled!</h3>")
+                setTimeout(function () { $("#bill2").hide(); }, 1000);
+                $("#bill2p").css("display", "block");
+            });
+        });
+
+        function closeNavigation() {
+            document.getElementById("verticalNav").style.width = "0";
+        }
+
+        function openNavigation() {
+            document.getElementById("verticalNav").style.width = "200px";
+        }
+
+        function optionalInfo() {
+            var x = document.getElementById("optionalContent");
+            var y = document.getElementById("expand");
+
+            if (x.style.display == "none") {
+                x.style.display = "block";
+                y.innerHTML = "Hide";
+            } else {
+                x.style.display = "none";
+                y.innerHTML = "Show";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
