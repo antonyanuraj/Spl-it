@@ -1,3 +1,6 @@
+# Spl-it
+A website to split bills among people.
+
 Please click on index.html first
 
 Log in form:
